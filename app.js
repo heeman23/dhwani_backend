@@ -7,7 +7,7 @@ var fileupload = require("express-fileupload");
 // var util = require("util");
 // var multer = require('multer');
 var fs=require('fs');
-var conn=require('./mailOtp');
+var conn=require('./dbcredentials');
 csv=require('csvtojson');
 server.use(cors())
 server.use(bodyParser.urlencoded({
