@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/jquery/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/boostrap/bootstrap.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/2.1.0/angular-datatables.js"></script>-->
+<link href="/boostrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+    <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+
+<script>
+
+    var app = angular.module('myApp', []);
+    app.controller('customersCtrl', function($scope, $http) {
+        $http.get("/GetcsvData")
+            .then(function (response)
+            {
+                console.log(response.data);
+                $scope.names = response.data;
+                console.log( $scope.names);
+            });
+    });
+
+</script>
+</head>
+<body>
+<div class="container">
+    <h2 class="center">CSV DATA</h2>
+    <!--<table class="table table-hover" id="csvData">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Firstname</th>-->
+            <!--<th>Lastname</th>-->
+            <!--<th>contact</th>-->
+            <!--<th>address</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+<!--<tr>-->
+
+
+<!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+    <div ng-app="myApp" ng-controller="customersCtrl">
+
+        <table class="table table-hover" >
+            <thead>  <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>contact</th>
+                <th>address</th>
+            </tr>
+            </thead>
+
+<tbody> <tr ng-repeat="x in names | orderBy:sortingOrder:reverse" >
+    <td>{{ x.firstname }}</td>
+    <td>{{ x.lastname }}</td>
+    <td>{{ x.contact }}</td>
+    <td>{{ x.address }}</td>
+</tr></tbody>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

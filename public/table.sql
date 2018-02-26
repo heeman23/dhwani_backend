@@ -1,0 +1,1 @@
+create table usercsvdata(firstname varchar(500),lastname varchar(500),contact varchar(500),address varchar(500));
